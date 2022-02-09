@@ -67,6 +67,29 @@ class Tensor():
             return result
 
         # 4d matrix
+        elif self.shape_length == 4:
+            result = []
+            count = 0
+
+            for i in range(self.shape[0]):
+                temp = []
+                for j in range(self.shape[1]):
+                    temp_j = []
+                    for k in range(self.shape[2]):
+                        temp_k = []
+                        for l in range(self.shape[2]):
+                            for num in range(count, count + 1):
+                                if count >= self.data_length or count == total_elements_in_matrix:
+                                    temp_k.append(0)
+                                else:
+                                    temp_k.append(self.data[num])
+                            count += 1
+                        temp_j.append(temp_k)
+                    temp.append(temp_j)
+                result.append(temp)
+            return result
+        else:
+            return False
 
 
 
@@ -95,28 +118,13 @@ if tensor1.checking_shape_and_data():
 else:
     print(tensor1.checking_shape_and_data())
 
+print()
 
+shape2 = [2, 2, 2, 2]
+data2 = [0, 1, 2, 3, 4, 5, 0.1, 0.2, -3, -2, -1, 3, 2, 1]
 
-
-
-# distance = [[[ 0 for k in range(shape0[2])] for j in range(shape0[1])] for i in range(shape0[0])]
-
-# print(distance)
-# print()
-
-
-# # This works for test 1
-# for i in range(shape0[0]):
-#     for j in range(shape0[1]):
-#         for k in range(shape0[2]):
-#             for num in range(count, count + 1):
-#                 if count >= len(data0) or count == 12:
-#                     break
-#                 else:
-#                     distance[i][j][k] = data0[num]
-#             count += 1
-
-# # # Test 2 with 
-
-
-# pprint(distance)
+tensor2 = Tensor(data2, shape2)
+if tensor2.checking_shape_and_data():
+    print(tensor2.create_tensor())
+else:
+    print(tensor2.checking_shape_and_data())
