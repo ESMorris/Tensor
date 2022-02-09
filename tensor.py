@@ -77,7 +77,7 @@ class Tensor():
                     temp_j = []
                     for k in range(self.shape[2]):
                         temp_k = []
-                        for l in range(self.shape[2]):
+                        for l in range(self.shape[3]):
                             for num in range(count, count + 1):
                                 if count >= self.data_length or count == total_elements_in_matrix:
                                     temp_k.append(0)
