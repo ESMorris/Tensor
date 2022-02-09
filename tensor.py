@@ -9,10 +9,18 @@ class Tensor():
         self.shape_length = len(shape)
         self.data_length = len(data)
     
-    def shape_data(self):
+    def checking_shape_and_data(self):
+        if self.shape_length == 0:
+            return []
+
         for num in self.shape:
             if num < 0:
                 return False
+
+        for num in self.data:
+            if type(num) != int and type(num) != float:
+                return False
+
         return True
     
     def create_tensor(self):
@@ -30,10 +38,13 @@ data = [0, 1, 2, 3, 4, 5, 0.1, 0.2, -3]
 # count = 0
 
 tensor = Tensor(data, shape)
-if tensor.shape_data():
+if tensor.checking_shape_and_data():
     tensor.create_tensor()
 else:
-    print(tensor.shape_data())
+    print(tensor.checking_shape_and_data())
+
+
+
 
 
 # distance = [[[ 0 for k in range(shape0[2])] for j in range(shape0[1])] for i in range(shape0[0])]
