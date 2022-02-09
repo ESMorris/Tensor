@@ -1,6 +1,3 @@
-from pprint import pprint
-from unittest import result
-
 
 class Tensor():
 
@@ -27,11 +24,10 @@ class Tensor():
 
 
     def create_tensor(self):
-
         total_elements_in_matrix = 1
+
         for num in self.shape:
             total_elements_in_matrix *= num
-        print(total_elements_in_matrix)
 
         # 2d matrix
         if self.shape_length == 2:
@@ -42,7 +38,7 @@ class Tensor():
                 temp = []
                 for j in range(self.shape[1]):
                     for num in range(count, count + 1):
-                        if count >= len(self.data) or count == 10:
+                        if count >= self.data_length or count == total_elements_in_matrix:
                             temp.append(0)
                         else:
                             temp.append(self.data[num])
@@ -51,6 +47,25 @@ class Tensor():
             return result
 
         # 3d matrix
+        elif self.shape_length == 3:
+            result = []
+            count = 0
+
+            for i in range(self.shape[0]):
+                temp = []
+                for j in range(self.shape[1]):
+                    temp_j = []
+                    for k in range(self.shape[2]):
+                        for num in range(count, count + 1):
+                            if count >= self.data_length or count == total_elements_in_matrix:
+                                temp_j.append(0)
+                            else:
+                                temp_j.append(self.data[num])
+                        count += 1
+                    temp.append(temp_j)
+                result.append(temp)
+            return result
+
         # 4d matrix
 
 
@@ -60,43 +75,31 @@ class Tensor():
 
 
 # Initial testing
-# shape = [2, 3, 2]
-# data = [0, 1, 2, 3, 4, 5, 0.1, 0.2, -3]
+shape0 = [2, 3, 2]
+data0 = [0, 1, 2, 3, 4, 5, 0.1, 0.2, -3]
 
-shape = [5, 2]
-data = [0, 1, 2, 3, 4, 5, 0.1, 0.2, -3, -2, -1, 3, 2, 1]
-
-tensor = Tensor(data, shape)
-if tensor.checking_shape_and_data():
-    print(tensor.create_tensor())
+tensor0 = Tensor(data0, shape0)
+if tensor0.checking_shape_and_data():
+    print(tensor0.create_tensor())
 else:
-    print(tensor.checking_shape_and_data())
+    print(tensor0.checking_shape_and_data())
+
+print()
+
+shape1 = [5, 2]
+data1 = [0, 1, 2, 3, 4, 5, 0.1, 0.2, -3, -2, -1, 3, 2, 1]
+
+tensor1 = Tensor(data1, shape1)
+if tensor1.checking_shape_and_data():
+    print(tensor1.create_tensor())
+else:
+    print(tensor1.checking_shape_and_data())
 
 
 
 
 
 # distance = [[[ 0 for k in range(shape0[2])] for j in range(shape0[1])] for i in range(shape0[0])]
-
-# shape = [5, 2]
-# data = [0, 1, 2, 3]
-
-
-
-# distance = []
-# count = 0
-# for i in range(shape[0]):
-#     temp = []
-#     for j in range(shape[1]):
-#         for num in range(count, count + 1):
-#             if count >= len(data) or count == 10:
-#                 temp.append(0)
-#             else:
-#                 temp.append(data[num])
-#             count += 1
-#     distance.append(temp)
-
-
 
 # print(distance)
 # print()
